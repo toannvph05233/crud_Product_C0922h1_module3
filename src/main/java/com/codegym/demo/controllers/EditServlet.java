@@ -11,13 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/products")
-public class ProductServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/editProduct")
+public class EditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("products", ProductService.products);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/product/products.jsp");
-        dispatcher.forward(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+        Product product = ProductService.findById(id);
+        req.setAttribute("toan",product);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/product/editProduct.jsp");
+        dispatcher.forward(req,resp);
     }
 
     @Override
@@ -27,7 +29,10 @@ public class ProductServlet extends HttpServlet {
         String img = req.getParameter("img");
         double price = Double.parseDouble(req.getParameter("price"));
 
-        ProductService.products.add(new Product(id, name, img, true, price));
+        int index = ProductService.findIndexById(id);
+        ProductService.products.set(index, new Product(id, name, img, true, price));
+
         resp.sendRedirect("/products");
+
     }
 }

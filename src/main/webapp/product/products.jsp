@@ -20,7 +20,7 @@
 <body>
 
 <div class="container mt-3">
-    <h2>Striped Rows</h2>
+    <h2>SĐây là file Product.jsp</h2>
     <p>The .table-striped class adds zebra-stripes to a table:</p>
     <a href="/product/createProduct.jsp" class="btn btn-success">Create</a>
     <table class="table table-striped">
@@ -44,7 +44,7 @@
                 <c:if test="${p.status}"><td style="color: green">Sẵn sàng</td></c:if>
                 <c:if test="${!p.status}"><td style="color: red">Hết hàng</td> </c:if>
                 <td>${p.price}</td>
-                <td><button type="button" class="btn btn-warning">Edit</button></td>
+                <td><a href="/editProduct?action=edit&id=${p.id}" class="btn btn-warning" >Edit</a></td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
         </c:forEach>
