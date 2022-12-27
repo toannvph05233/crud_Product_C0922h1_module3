@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("products", ProductService.products);
+        req.setAttribute("products", ProductService.getAll());
         RequestDispatcher dispatcher = req.getRequestDispatcher("/product/products.jsp");
         dispatcher.forward(req, resp);
     }
@@ -27,7 +27,7 @@ public class ProductServlet extends HttpServlet {
         String img = req.getParameter("img");
         double price = Double.parseDouble(req.getParameter("price"));
 
-        ProductService.products.add(new Product(id, name, img, true, price));
+        ProductService.save(new Product(id, name, img, true, price));
         resp.sendRedirect("/products");
     }
 }

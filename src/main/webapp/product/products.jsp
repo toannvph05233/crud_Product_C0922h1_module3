@@ -44,8 +44,8 @@
                 <c:if test="${p.status}"><td style="color: green">Sẵn sàng</td></c:if>
                 <c:if test="${!p.status}"><td style="color: red">Hết hàng</td> </c:if>
                 <td>${p.price}</td>
-                <td><a href="/editProduct?action=edit&id=${p.id}" class="btn btn-warning" >Edit</a></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><a href="/editProduct?id=${p.id}" class="btn btn-warning" >Edit</a></td>
+                <td><a href="/deleteProduct?id=${p.id}" class="btn btn-danger">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>

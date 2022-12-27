@@ -28,10 +28,7 @@ public class EditServlet extends HttpServlet {
         String name = req.getParameter("name");
         String img = req.getParameter("img");
         double price = Double.parseDouble(req.getParameter("price"));
-
-        int index = ProductService.findIndexById(id);
-        ProductService.products.set(index, new Product(id, name, img, true, price));
-
+        ProductService.edit(new Product(id,name,img,true,price));
         resp.sendRedirect("/products");
 
     }
