@@ -20,7 +20,13 @@
 <body>
 
 <div class="container mt-3">
-    <h2>SĐây là file Product.jsp</h2>
+    <div class="row">
+        <h2 class="col-9">Xin chào ${account.username}</h2>
+        <c:if test="${sessionScope.account != null}">
+            <a href="/logout" class="btn btn-danger col-3">Logout</a>
+        </c:if>
+    </div>
+
     <p>The .table-striped class adds zebra-stripes to a table:</p>
     <a href="/product/createProduct.jsp" class="btn btn-success">Create</a>
     <table class="table table-striped">

@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
+    static Connection connection = ConnectionMySql.getConnection();
+
     public static List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         String sql = "Select * from product";
-        Connection connection = ConnectionMySql.getConnection();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -29,7 +30,6 @@ public class ProductDAO {
 
     public static boolean save(Product product) {
         String sql = "insert into product value (?,?,?,?)";
-                Connection connection = ConnectionMySql.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,product.getId());
@@ -45,7 +45,6 @@ public class ProductDAO {
 
     public static boolean edit(Product product) {
         String sql = "update product set name=?, img=?, price=? where id=?";
-        Connection connection = ConnectionMySql.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(4,product.getId());
@@ -61,7 +60,6 @@ public class ProductDAO {
 
     public static Product findById(int id){
         String sql = "select * from product where id = "+ id;
-        Connection connection = ConnectionMySql.getConnection();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -80,7 +78,6 @@ public class ProductDAO {
 
     public static void delete(int id){
         String sql ="delete FROM product where id = "+id;
-        Connection connection = ConnectionMySql.getConnection();
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
